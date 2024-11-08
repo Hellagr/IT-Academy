@@ -79,12 +79,6 @@ node_modules/
 /.idea/
 
 #My personal ignore
-/Assets/Cartoon_Texture_Pack
-/Assets/TextMesh Pro
-/Assets/Lana Studio
-/Assets/Matthew Guz
-/Assets/2D Casual UI
-/Assets/TreePackVol.1
 /GameBuild
 /GameBuild.rar
 /Program.cs

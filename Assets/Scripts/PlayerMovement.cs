@@ -14,14 +14,14 @@ public class PlayerMovement : MonoBehaviour
     InputAction jump;
 
     [Header("Player Rotation")]
-    [SerializeField] Camera playerCamera;
+    [SerializeField] Transform cameraFocusTransform;
     Vector2 moveinput;
     Vector2 lookinpit;
     Vector3 jumpVelocity;
 
     [Header("Player Movement Settings")]
     [SerializeField] float speed = 20f;
-    [SerializeField] float lookSensitivity = 10f;
+    [SerializeField] float lookSensitivity = 3f;
     [SerializeField] float repulsiveForce = 9.81f;
     [SerializeField] float jumpTime = 1f;
     float gravity = -9.81f;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     bool isJumping = false;
     private Coroutine jumpCoroutine;
 
-    [Header("Player Touch Settings")]
+    [Header("Player Touch Field")]
     [SerializeField] GameObject mobileUI;
     [SerializeField] RectTransform joystickRectTransform;
     [SerializeField] RectTransform jumpForMobileRectTransform;
@@ -116,8 +116,8 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        xRotation = Mathf.Clamp(xRotation, -30f, 74f);
+        cameraFocusTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 
     private void Move()
