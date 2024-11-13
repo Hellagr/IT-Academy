@@ -3,9 +3,11 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public static Movement Instance { get; private set; }
+
     [Header("Player input")]
     [SerializeField] Camera characterCamera;
-    InputSystem_Actions inputSystemActions;
+    public InputSystem_Actions inputSystemActions { get; private set; }
     CharacterController controller;
 
     [Header("Input data")]
@@ -22,27 +24,43 @@ public class Movement : MonoBehaviour
     bool isJumping = false;
 
     [Header("Animator")]
-    Animator animator;
+    public Animator animator { get; private set; }
     float animationBlendSpeed = 0.2f;
     float playerMoveSpeed = 0;
     bool isRunning = false;
+    bool freeFall = false;
 
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         inputSystemActions = new InputSystem_Actions();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        if (characterCamera == null) Debug.LogError("characterCamera is not assigned!");
-        if (controller == null) Debug.LogError("CharacterController component is missing!");
-        if (animator == null) Debug.LogError("Animator component is missing!");
-
-        inputSystemActions.Player.Enable();
         inputSystemActions.Player.Move.performed += OnMove;
         inputSystemActions.Player.Move.canceled += CancelMove;
         inputSystemActions.Player.Sprint.performed += StartRunning;
         inputSystemActions.Player.Sprint.canceled += EndRunning;
         inputSystemActions.Player.Jump.performed += Jump;
+    }
+
+    //void OnEnable()
+    //{
+    //    inputSystemActions.Player.Enable();
+    //}
+
+    void OnDisable()
+    {
+        inputSystemActions.Player.Disable();
     }
 
     void OnMove(InputAction.CallbackContext contex)
@@ -67,8 +85,7 @@ public class Movement : MonoBehaviour
 
     void Jump(InputAction.CallbackContext context)
     {
-
-        if (!isJumping)
+        if (!isJumping && !freeFall)
         {
             isJumping = true;
             animator.SetTrigger("Jump");
@@ -85,19 +102,10 @@ public class Movement : MonoBehaviour
             JumpAction();
         }
 
-        if (!isJumping && !controller.isGrounded && speedY == gravity)
+        if (!isJumping && !controller.isGrounded)
         {
-            FreeFall();
-        }
-    }
-
-    void FreeFall()
-    {
-        animator.SetBool("FreeFall", true);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.2f, LayerMask.GetMask("Default")))
-        {
-            animator.SetTrigger("Landing");
+            freeFall = true;
+            animator.SetBool("FreeFall", true);
         }
     }
 
@@ -109,7 +117,13 @@ public class Movement : MonoBehaviour
         if (!isJumping && controller.isGrounded)
         {
             currentSpeed = isRunning ? sprintSpeed : walkingSpeed;
-            animator.SetBool("FreeFall", false);
+
+            if (freeFall)
+            {
+                freeFall = false;
+                animator.SetBool("FreeFall", false);
+                animator.SetTrigger("Landing");
+            }
         }
 
         Vector3 verticalVelocity = Vector3.up * speedY;
@@ -144,19 +158,17 @@ public class Movement : MonoBehaviour
         if (!controller.isGrounded)
         {
             speedY += gravity * Time.deltaTime;
+            animator.SetFloat("SpeedY", speedY / jumpSpeed);
+        }
+        else
+        {
+            speedY = gravity;
+            isJumping = false;
         }
 
-        animator.SetFloat("SpeedY", speedY / jumpSpeed);
-
-        if (speedY < 0.1)
+        if (!isJumping && controller.isGrounded)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.3f, LayerMask.GetMask("Default")))
-            {
-                isJumping = false;
-                animator.SetTrigger("Landing");
-                speedY = gravity;
-            }
+            animator.SetTrigger("Landing");
         }
     }
 }
