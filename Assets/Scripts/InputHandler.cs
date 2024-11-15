@@ -1,14 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class InputHandler : MonoBehaviour
 {
-    public static Movement Instance { get; private set; }
+    public static InputHandler Instance { get; private set; }
 
     [Header("Player input")]
     [SerializeField] Camera characterCamera;
-    public InputSystem_Actions inputSystemActions { get; private set; }
+    public InputSystem_Actions InputSystemActions { get; private set; }
     CharacterController controller;
+    LifeHandler lifeHandler;
 
     [Header("Input data")]
     [SerializeField] float walkingSpeed = 2f;
@@ -24,8 +26,8 @@ public class Movement : MonoBehaviour
     bool isJumping = false;
 
     [Header("Animator")]
-    public Animator animator { get; private set; }
-    float animationBlendSpeed = 0.2f;
+    public Animator animator;
+    float animationBlendSpeed = 0.1f;
     float playerMoveSpeed = 0;
     bool isRunning = false;
     bool freeFall = false;
@@ -42,25 +44,17 @@ public class Movement : MonoBehaviour
             Destroy(gameObject);
         }
 
-        inputSystemActions = new InputSystem_Actions();
+        InputSystemActions = new InputSystem_Actions();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        lifeHandler = GetComponent<LifeHandler>();
 
-        inputSystemActions.Player.Move.performed += OnMove;
-        inputSystemActions.Player.Move.canceled += CancelMove;
-        inputSystemActions.Player.Sprint.performed += StartRunning;
-        inputSystemActions.Player.Sprint.canceled += EndRunning;
-        inputSystemActions.Player.Jump.performed += Jump;
-    }
-
-    //void OnEnable()
-    //{
-    //    inputSystemActions.Player.Enable();
-    //}
-
-    void OnDisable()
-    {
-        inputSystemActions.Player.Disable();
+        InputSystemActions.Player.Move.performed += OnMove;
+        InputSystemActions.Player.Move.canceled += CancelMove;
+        InputSystemActions.Player.Sprint.performed += StartRunning;
+        InputSystemActions.Player.Sprint.canceled += EndRunning;
+        InputSystemActions.Player.Jump.performed += Jump;
+        InputSystemActions.Player.Attack.performed += Attack;
     }
 
     void OnMove(InputAction.CallbackContext contex)
@@ -93,6 +87,12 @@ public class Movement : MonoBehaviour
         }
     }
 
+    void Attack(InputAction.CallbackContext context)
+    {
+        animator.SetInteger("AttackType", UnityEngine.Random.Range(0, 3));
+        animator.SetTrigger("Attack");
+    }
+
     void Update()
     {
         Move();
@@ -101,18 +101,18 @@ public class Movement : MonoBehaviour
         {
             JumpAction();
         }
-
-        if (!isJumping && !controller.isGrounded)
-        {
-            freeFall = true;
-            animator.SetBool("FreeFall", true);
-        }
     }
 
     void Move()
     {
         Vector3 movement = new Vector3(moveInput.x, 0, moveInput.y);
         Vector3 movementWithCameraRotation = Quaternion.Euler(0.0f, characterCamera.transform.rotation.eulerAngles.y, 0.0f) * movement.normalized;
+
+        if (!isJumping && !controller.isGrounded && moveInput != Vector2.zero)
+        {
+            freeFall = true;
+            animator.SetBool("FreeFall", true);
+        }
 
         if (!isJumping && controller.isGrounded)
         {
@@ -166,7 +166,7 @@ public class Movement : MonoBehaviour
             isJumping = false;
         }
 
-        if (!isJumping && controller.isGrounded)
+        if (controller.isGrounded)
         {
             animator.SetTrigger("Landing");
         }
