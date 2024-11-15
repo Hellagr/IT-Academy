@@ -30,7 +30,6 @@ public class InputHandler : MonoBehaviour
     float animationBlendSpeed = 0.1f;
     float playerMoveSpeed = 0;
     bool isRunning = false;
-    bool freeFall = false;
 
     void Awake()
     {
@@ -79,7 +78,7 @@ public class InputHandler : MonoBehaviour
 
     void Jump(InputAction.CallbackContext context)
     {
-        if (!isJumping && !freeFall)
+        if (!isJumping && !animator.GetBool("FreeFall"))
         {
             isJumping = true;
             animator.SetTrigger("Jump");
@@ -110,17 +109,19 @@ public class InputHandler : MonoBehaviour
 
         if (!isJumping && !controller.isGrounded && moveInput != Vector2.zero)
         {
-            freeFall = true;
             animator.SetBool("FreeFall", true);
         }
 
         if (!isJumping && controller.isGrounded)
         {
-            currentSpeed = isRunning ? sprintSpeed : walkingSpeed;
-
-            if (freeFall)
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Movement"))
             {
-                freeFall = false;
+                currentSpeed = isRunning ? sprintSpeed : walkingSpeed;
+            }
+
+            if (animator.GetBool("FreeFall"))
+            {
                 animator.SetBool("FreeFall", false);
                 animator.SetTrigger("Landing");
             }
