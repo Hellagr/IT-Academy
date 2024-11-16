@@ -1,16 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    public static InputHandler Instance { get; private set; }
-
     [Header("Player input")]
     [SerializeField] Camera characterCamera;
-    public InputSystem_Actions InputSystemActions { get; private set; }
+    InputSystem_Actions InputSystemActions;
     CharacterController controller;
-    LifeHandler lifeHandler;
 
     [Header("Input data")]
     [SerializeField] float walkingSpeed = 2f;
@@ -33,20 +29,9 @@ public class InputHandler : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         InputSystemActions = new InputSystem_Actions();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        lifeHandler = GetComponent<LifeHandler>();
 
         InputSystemActions.Player.Move.performed += OnMove;
         InputSystemActions.Player.Move.canceled += CancelMove;
@@ -54,6 +39,16 @@ public class InputHandler : MonoBehaviour
         InputSystemActions.Player.Sprint.canceled += EndRunning;
         InputSystemActions.Player.Jump.performed += Jump;
         InputSystemActions.Player.Attack.performed += Attack;
+    }
+
+    void OnEnable()
+    {
+        InputSystemActions.Enable();
+    }
+
+    void OnDisable()
+    {
+        InputSystemActions.Disable();
     }
 
     void OnMove(InputAction.CallbackContext contex)
@@ -104,13 +99,13 @@ public class InputHandler : MonoBehaviour
 
     void Move()
     {
-        Vector3 movement = new Vector3(moveInput.x, 0, moveInput.y);
-        Vector3 movementWithCameraRotation = Quaternion.Euler(0.0f, characterCamera.transform.rotation.eulerAngles.y, 0.0f) * movement.normalized;
-
-        if (!isJumping && !controller.isGrounded && moveInput != Vector2.zero)
+        if (!isJumping && !controller.isGrounded)
         {
             animator.SetBool("FreeFall", true);
         }
+
+        Vector3 movement = new Vector3(moveInput.x, 0, moveInput.y);
+        Vector3 movementWithCameraRotation = Quaternion.Euler(0.0f, characterCamera.transform.rotation.eulerAngles.y, 0.0f) * movement.normalized;
 
         if (!isJumping && controller.isGrounded)
         {
