@@ -1,14 +1,12 @@
-using System;
 using UnityEngine;
-using UnityEngine.Animations;
 
-public static class DirectionOfCreatingWall
+public enum DirectionOfCreatingWall
 {
-    public const string UP = "Up";
-    public const string DOWN = "Down";
+    UP,
+    DOWN
 }
 
-public class MainPlateTrigger : MonoBehaviour
+public class FloorTrigger : MonoBehaviour
 {
     /* 
      1. Floor 
@@ -21,34 +19,28 @@ public class MainPlateTrigger : MonoBehaviour
      */
 
     BoxCollider boxCollider;
-    Vector3 exitTriggerPoint;
-    int parentID;
     float boundMaxX;
-    float boundMaxZ;
 
 
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
         boundMaxX = boxCollider.bounds.max.x;
-        boundMaxZ = boxCollider.bounds.max.z;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        parentID = transform.parent.parent.gameObject.GetInstanceID();
-
         if (other.CompareTag(Tags.PLAYER))
         {
-            GameManager.Instance.DestroyFloor(parentID);
-            //Debug.Log("destroy");
+            GameManager.Instance.DestroyFloor(transform.parent.parent.gameObject);
         }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        exitTriggerPoint = boxCollider.ClosestPoint(other.transform.position);
+
+        Vector3 exitTriggerPoint = boxCollider.ClosestPoint(other.transform.position);
         Vector3 parentGlobalPosition = transform.parent.parent.position;
 
         if (other.CompareTag(Tags.PLAYER))

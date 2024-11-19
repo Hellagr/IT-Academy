@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class TriggerManager : MonoBehaviour
 {
-    MainPlateTrigger MainPlateTrigger;
+    FloorTrigger floorTrigger;
     void Awake()
     {
-        MainPlateTrigger = GetComponent<MainPlateTrigger>();
+        floorTrigger = GetComponent<FloorTrigger>();
     }
 
     private void OnEnable()

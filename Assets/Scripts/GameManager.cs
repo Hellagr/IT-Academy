@@ -1,32 +1,9 @@
-using System.Runtime.Serialization;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class Tags
 {
     public const string PLAYER = "Player";
-}
-
-class Node
-{
-    public int id;
-    public GameObject objectReference;
-    public Node next;
-    public Node(int id, GameObject referenceToObject, Node next)
-    {
-        this.id = id;
-        this.objectReference = referenceToObject;
-        this.next = next;
-    }
-}
-
-class LinkedList
-{
-    public Node Head;
-    public LinkedList()
-    {
-        Head = null;
-    }
 }
 
 public class GameManager : MonoBehaviour
@@ -35,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject floorPrefab;
     [SerializeField] Transform spawner;
-    LinkedList linkedList;
+    LinkedList<GameObject> linkedList;
     FloorPropeties floorPropeties;
     float heightOfFloor;
 
@@ -50,28 +27,25 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (spawner.childCount == 0)
-        {
-            linkedList = new LinkedList();
-            GameObject firstObject = Instantiate(floorPrefab, transform.position, Quaternion.identity, spawner);
-
-            linkedList.Head = new Node(spawner.GetChild(0).GetInstanceID(), firstObject, null);
-
-            Debug.Log(spawner.GetChild(0).GetInstanceID());
-
-        }
     }
 
     private void Start()
     {
         floorPropeties = spawner.GetChild(0).GetComponent<FloorPropeties>();
-        //Debug.Log(floorPrefab.GetComponent<FloorPropeties>().Height);
         heightOfFloor = floorPropeties.Height;
-
     }
 
-    public void CreateFloor(Vector3 parentGlobalPosition, string directionOfCreating)
+    private void OnEnable()
+    {
+        if (spawner.childCount == 0)
+        {
+            GameObject firstObject = Instantiate(floorPrefab, transform.position, Quaternion.identity, spawner);
+            linkedList = new LinkedList<GameObject>();
+            linkedList.AddFirst(firstObject);
+        }
+    }
+
+    public void CreateFloor(Vector3 parentGlobalPosition, DirectionOfCreatingWall directionOfCreating)
     {
         GameObject newFloor;
         if (directionOfCreating == DirectionOfCreatingWall.DOWN)
@@ -82,27 +56,22 @@ public class GameManager : MonoBehaviour
         {
             newFloor = Instantiate(floorPrefab, parentGlobalPosition + new Vector3(0, heightOfFloor, 0), Quaternion.identity, spawner);
         }
-        linkedList.Head.next = new Node(newFloor.GetInstanceID(), newFloor, null);
-        Debug.Log(newFloor.GetInstanceID());
+        linkedList.AddLast(newFloor);
     }
 
-    public void DestroyFloor(int idFloorPlayerStanding)
+    public void DestroyFloor(GameObject floorForDelete)
     {
-        if (linkedList.Head.next != null)
+        if (linkedList.First.Next != null)
         {
-            if (linkedList.Head.id == idFloorPlayerStanding)
+            if (linkedList.First.Value == floorForDelete)
             {
-
-                Debug.Log("equal");
-
-                Destroy(linkedList.Head.next.objectReference);
-                linkedList.Head.next = null;
+                Destroy(linkedList.First.Next.Value);
+                linkedList.RemoveLast();
             }
             else
             {
-                Debug.Log("not equal");
-                Destroy(linkedList.Head.objectReference);
-                linkedList.Head = linkedList.Head.next;
+                Destroy(linkedList.First.Value);
+                linkedList.RemoveFirst();
             }
         }
     }
