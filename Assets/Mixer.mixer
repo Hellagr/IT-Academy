@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-2547762457594177453
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: d2969835e85fea045a73d1cfa5e9c31a
+  m_EffectName: Attenuation
+  m_MixLevel: 4e490b725b74f5f4aa08c32616a2ba54
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &-1706230194310558368
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Far to door
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 09876fa3561e9ba4c914fddce3e78873
+  m_FloatValues:
+    c529967b46e13bb4181ec9f2d70aefe2: -10.345207
+  m_TransitionOverrides: {}
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mixer
+  m_OutputGroup: {fileID: 0}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: -1706230194310558368}
+  - {fileID: 24500006}
+  - {fileID: 587328158829293622}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 97c4bf58c1a7c4e42b06cf22a381ce2e
+    - dd48e1ac60d5dbf44823cf88c7bd43f7
+    - 1a655a1893e466341aa322a20f06afce
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: -1706230194310558368}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 97c4bf58c1a7c4e42b06cf22a381ce2e
+  m_Children:
+  - {fileID: 3065353899729179813}
+  - {fileID: 2782659281305383379}
+  m_Volume: faf0db7332476bd4286fd0d23d71bc33
+  m_Pitch: 2cc8d606ed640eb4f8c9527e5f7ef26c
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: eb437505a1a884c4b9e12358567ee177
+  m_EffectName: Attenuation
+  m_MixLevel: 13bf88ce0d982864e854a8430509360f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Snapshot
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: bf6229f282ec17f43bb2996f668131c2
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &587328158829293622
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Close to door
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: c6a58fc6630638f42a9ef524c20bb1a3
+  m_FloatValues:
+    af3d52f066024f448a735a72e12b79c1: -4.935645
+    c529967b46e13bb4181ec9f2d70aefe2: 9.925883
+  m_TransitionOverrides: {}
+--- !u!243 &2782659281305383379
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Close to door
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: dd48e1ac60d5dbf44823cf88c7bd43f7
+  m_Children: []
+  m_Volume: c529967b46e13bb4181ec9f2d70aefe2
+  m_Pitch: 13b12060ca84f824793dc0ac30fc50de
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 6928653176418181037}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &3065353899729179813
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Far to door
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1a655a1893e466341aa322a20f06afce
+  m_Children: []
+  m_Volume: af3d52f066024f448a735a72e12b79c1
+  m_Pitch: cd020c6af80ce8b48ac403db5822d042
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -2547762457594177453}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &6928653176418181037
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 96f910129d8e32749b40fda875deebbb
+  m_EffectName: Attenuation
+  m_MixLevel: d58df6d30bc74d045b5f81b2f3fda765
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FloorPropeties : MonoBehaviour
 {
-    public GameObject lowestObj;
-    public GameObject highestObj;
+    [SerializeField] GameObject lowestObj;
+    [SerializeField] GameObject highestObj;
     MeshCollider colliderLowestObj;
     MeshCollider colliderHighestObj;
     float lowestYpoint;

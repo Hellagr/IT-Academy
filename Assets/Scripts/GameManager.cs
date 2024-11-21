@@ -31,18 +31,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        floorPropeties = spawner.GetChild(0).GetComponent<FloorPropeties>();
-        heightOfFloor = floorPropeties.Height;
-    }
-
-    private void OnEnable()
-    {
         if (spawner.childCount == 0)
         {
             GameObject firstObject = Instantiate(floorPrefab, transform.position, Quaternion.identity, spawner);
             linkedList = new LinkedList<GameObject>();
             linkedList.AddFirst(firstObject);
         }
+
+        floorPropeties = spawner.GetChild(0).GetComponent<FloorPropeties>();
+        heightOfFloor = floorPropeties.Height;
     }
 
     public void CreateFloor(Vector3 parentGlobalPosition, DirectionOfCreatingWall directionOfCreating)
