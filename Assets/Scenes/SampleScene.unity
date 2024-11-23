@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &587618564
 Transform:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ Transform:
   m_GameObject: {fileID: 587618563}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -300,10 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 3403818692428685453, guid: 76842ae7c802afd478b046cdf8337780, type: 3}
   speedOfSprite: 0.025
-  isRight: 1
 --- !u!1 &716382428
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &716382429
 Transform:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 716382428}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -348,10 +348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 9051407798761343095, guid: 08fb87e75d5f230429d609031604f292, type: 3}
   speedOfSprite: 0.04
-  isRight: 1
 --- !u!1 &726907635
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &726907636
 Transform:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 726907635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -396,10 +396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 5054156711202871201, guid: e09625c8b8bbc3d47848f2a82d5bd17c, type: 3}
   speedOfSprite: 0.1
-  isRight: 1
 --- !u!1 &1006589209
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1006589210
 Transform:
   m_ObjectHideFlags: 0
@@ -426,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 1006589209}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -444,10 +444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 8430389780012733872, guid: b140eff99eb5d9347b3aa808d865e9f2, type: 3}
   speedOfSprite: 0.015
-  isRight: 1
 --- !u!1 &1023204270
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1023204271
 Transform:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ Transform:
   m_GameObject: {fileID: 1023204270}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -492,10 +492,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 7777949639745719998, guid: cc29b25812e37b74bb6f51be7017f510, type: 3}
   speedOfSprite: 0.005
-  isRight: 1
 --- !u!1 &1236798266
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +522,7 @@ Transform:
   m_GameObject: {fileID: 1236798266}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 11}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,10 +540,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 2090365789383287788, guid: 330ff10eb57c99143b017e8fe0d06229, type: 3}
   speedOfSprite: 0.045
-  isRight: 1
 --- !u!1 &1438114903
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1438114904
 Transform:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ Transform:
   m_GameObject: {fileID: 1438114903}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -588,10 +588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 8369255175344615793, guid: fcacc787b01ed8f40a36db68316461a3, type: 3}
   speedOfSprite: 0.02
-  isRight: 1
 --- !u!1 &1532046456
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1532046457
 Transform:
   m_ObjectHideFlags: 0
@@ -618,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 1532046456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -636,10 +636,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 5619333396199897226, guid: 4bb56121d46a3c44fbb73ff828e77abb, type: 3}
   speedOfSprite: 0.015
-  isRight: 1
 --- !u!1 &1581213756
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1581213757
 Transform:
   m_ObjectHideFlags: 0
@@ -666,7 +666,7 @@ Transform:
   m_GameObject: {fileID: 1581213756}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -684,10 +684,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 2705358026723126345, guid: a064a11ed8e83ed4d85034126b68fd46, type: 3}
   speedOfSprite: 0.035
-  isRight: 1
 --- !u!1 &1844329081
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1844329082
 Transform:
   m_ObjectHideFlags: 0
@@ -714,7 +714,7 @@ Transform:
   m_GameObject: {fileID: 1844329081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -732,10 +732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 2774931640238857893, guid: 8381acd55a111d444a6f3fe30288f57e, type: 3}
   speedOfSprite: 0.025
-  isRight: 1
 --- !u!1 &1891373950
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 1891373952}
   - component: {fileID: 1891373951}
   - component: {fileID: 1891373954}
+  - component: {fileID: 1891373955}
   m_Layer: 0
   m_Name: Ninja
   m_TagString: Untagged
@@ -820,7 +821,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 402f1a8b033934a4881551f476725a87, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -841,7 +842,7 @@ Transform:
   m_GameObject: {fileID: 1891373950}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.34, z: 0}
+  m_LocalPosition: {x: 0, y: -3.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -859,6 +860,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1e3cca980987f49b345f6d08f767e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRight: 1
+--- !u!114 &1891373955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891373950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1e3cca980987f49b345f6d08f767e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRight: 1
 --- !u!1 &1931211768
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1931211769
 Transform:
   m_ObjectHideFlags: 0
@@ -903,10 +918,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 4117048263586814903, guid: f8eb711dae7d11e4681897a60da05901, type: 3}
   speedOfSprite: 0.001
-  isRight: 1
 --- !u!1 &1961329458
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +947,7 @@ Transform:
   m_GameObject: {fileID: 1961329458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -966,7 +981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1967732787
 Transform:
   m_ObjectHideFlags: 0
@@ -976,7 +991,7 @@ Transform:
   m_GameObject: {fileID: 1967732786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -994,10 +1009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61633730063d41e42b7e5f2238c11d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapDirection: {fileID: 1891373954}
   mainCamera: {fileID: 519420031}
   spritePrefab: {fileID: 3480155183098612312, guid: 774898fc92376ec4da17826d2d111d66, type: 3}
   speedOfSprite: 0.03
-  isRight: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
