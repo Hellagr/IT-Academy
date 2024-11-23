@@ -19,9 +19,6 @@ public class RandomDollSpawn : MonoBehaviour
     void OnEnable()
     {
         var randomElement = Random.Range(0, 4);
-
-        Debug.Log(randomElement);
-
         transform.position = transform.parent.TransformPoint(positionVariants[randomElement]);
     }
 }

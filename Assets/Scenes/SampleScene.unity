@@ -192,7 +192,7 @@ AudioSource:
   m_GameObject: {fileID: 272044285}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3065353899729179813, guid: 7beac6d5ff9340540acfda4917e683a7, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6f19b09d98b43cd49b9294e93ce4290c, type: 3}
   m_Resource: {fileID: 8300000, guid: 6f19b09d98b43cd49b9294e93ce4290c, type: 3}
   m_PlayOnAwake: 1
@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23087e281f9c7c04686e903780f0e257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 534633892}
   stepPrefab: {fileID: 1219695521796418207, guid: a43cbb0409e85564487369a62efc8a47, type: 3}
   WomanScream: {fileID: 8300000, guid: c696351e6cd002941a2cd4a0a1c2b2af, type: 3}
   FoorSteps: {fileID: 8300000, guid: e83fb5653f999d348ae94deaae0052e6, type: 3}

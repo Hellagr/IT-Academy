@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,22 +6,22 @@ using UnityEngine.Rendering;
 
 public class Movement : MonoBehaviour
 {
-    CharacterController characterController;
     [SerializeField] Camera characterCamera;
     [SerializeField] InputSystem_Actions InputSystemActions;
     [SerializeField] float speed = 5.0f;
     [SerializeField] float runnigSpeed = 10.0f;
+    CharacterController characterController;
+    //Coroutine chechingLastPositionCoroutine;
+    Vector3 lastPosition;
+    Vector2 moveInput;
     float gravity = -9.81f;
     float speedYaxis = -9.81f;
     float jumpSpeed = 6f;
-    bool isJumping = false;
-    bool isRunnig = false;
-
-    Vector2 moveInput;
-    float pressingTime;
     float timeForAudioOfWalking = 0.8f;
     float timeForAudioOfRunning = 0.4f;
     float timeHasPassed = 0f;
+    bool isJumping = false;
+    bool isRunnig = false;
     bool isMoving = false;
     bool isLeftStep = true;
 
@@ -28,18 +29,13 @@ public class Movement : MonoBehaviour
     {
         InputSystemActions = new InputSystem_Actions();
         characterController = GetComponent<CharacterController>();
-
-        InputSystemActions.Player.Move.performed += OnMovement;
-        InputSystemActions.Player.Move.canceled += MovementCalceled;
-        InputSystemActions.Player.Sprint.performed += context => isRunnig = true;
-        InputSystemActions.Player.Sprint.canceled += context => isRunnig = false;
-        InputSystemActions.Player.Jump.performed += Jump;
     }
 
     void OnMovement(InputAction.CallbackContext context)
     {
         isMoving = true;
         moveInput = context.ReadValue<Vector2>();
+        //chechingLastPositionCoroutine = StartCoroutine(LastPosition());
     }
 
     void MovementCalceled(InputAction.CallbackContext context)
@@ -47,6 +43,7 @@ public class Movement : MonoBehaviour
         isMoving = false;
         timeHasPassed = 0f;
         moveInput = Vector2.zero;
+        //StopCoroutine(chechingLastPositionCoroutine);
     }
 
     void Jump(InputAction.CallbackContext context)
@@ -58,13 +55,32 @@ public class Movement : MonoBehaviour
         }
     }
 
+    //IEnumerator LastPosition()
+    //{
+    //    while (true)
+    //    {
+    //        lastPosition = transform.position;
+    //        yield return new WaitForSeconds(timeForAudioOfRunning - 0.1f);
+    //    }
+    //}
+
     void OnEnable()
     {
+        InputSystemActions.Player.Move.performed += OnMovement;
+        InputSystemActions.Player.Move.canceled += MovementCalceled;
+        InputSystemActions.Player.Sprint.performed += context => isRunnig = true;
+        InputSystemActions.Player.Sprint.canceled += context => isRunnig = false;
+        InputSystemActions.Player.Jump.performed += Jump;
         InputSystemActions.Enable();
     }
 
     void OnDisable()
     {
+        InputSystemActions.Player.Move.performed -= OnMovement;
+        InputSystemActions.Player.Move.canceled -= MovementCalceled;
+        InputSystemActions.Player.Sprint.performed -= context => isRunnig = true;
+        InputSystemActions.Player.Sprint.canceled -= context => isRunnig = false;
+        InputSystemActions.Player.Jump.performed -= Jump;
         InputSystemActions.Disable();
     }
 
@@ -86,35 +102,33 @@ public class Movement : MonoBehaviour
         Vector3 verticalVelocity = Vector3.up * speedYaxis;
         float currentSpeed = isRunnig ? runnigSpeed : speed;
 
-        AudioStep(currentSpeed, transform);
+        var previousPosition = transform.position;
 
         characterController.Move((verticalVelocity + rotation * currentSpeed) * Time.deltaTime);
+
+        var currentPosition = transform.position;
+
+        Vector3 differenceOfPosition = currentPosition - previousPosition;
+
+        if (!Mathf.Approximately(differenceOfPosition.sqrMagnitude, 0) && !isJumping && isMoving)
+        {
+            AudioStep(currentSpeed);
+        }
     }
 
-    private void AudioStep(float currentSpeed, Transform playerTransform)
+    private void AudioStep(float currentSpeed)
     {
-        if (isMoving)
+        timeHasPassed += Time.deltaTime;
+
+        float speedOfAudioMovement = currentSpeed == runnigSpeed ? timeForAudioOfRunning : timeForAudioOfWalking;
+
+        if (timeHasPassed > speedOfAudioMovement)
         {
-            timeHasPassed += Time.deltaTime;
+            AudioManager.Instance.CreateAStep(isLeftStep);
 
-            float speedOfAudioMovement = currentSpeed == runnigSpeed ? timeForAudioOfRunning : timeForAudioOfWalking;
+            isLeftStep = !isLeftStep;
 
-            pressingTime = Mathf.Clamp01(timeHasPassed / speedOfAudioMovement);
-
-            if (timeHasPassed > speedOfAudioMovement)
-            {
-                AudioManager.Instance.CreateAStep(playerTransform, isLeftStep);
-                if (isLeftStep)
-                {
-                    isLeftStep = false;
-                }
-                else
-                {
-                    isLeftStep = true;
-                }
-
-                timeHasPassed = 0f;
-            }
+            timeHasPassed = 0f;
         }
     }
 

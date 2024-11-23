@@ -5,12 +5,6 @@ public class Lockpicking : MonoBehaviour
 {
     [SerializeField] AudioMixerSnapshot farToDoor;
     [SerializeField] AudioMixerSnapshot closeToDoor;
-    BoxCollider boxCollider;
-
-    void OnEnable()
-    {
-        boxCollider = GetComponent<BoxCollider>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {

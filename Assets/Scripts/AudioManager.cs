@@ -12,6 +12,7 @@ public enum Sounds
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
+    [SerializeField] Transform playerTransform;
     [SerializeField] GameObject stepPrefab;
     [SerializeField] Dictionary<Sounds, AudioClip> audioClips;
 
@@ -42,7 +43,7 @@ public class AudioManager : MonoBehaviour
         };
     }
 
-    public void CreateAStep(Transform playerTransform, bool isStepLeft)
+    public void CreateAStep(bool isStepLeft)
     {
         Vector3 leftStep = new Vector3(-0.5f, -1f, 0);
         Vector3 rightStep = new Vector3(0.5f, -1f, 0);
@@ -74,7 +75,7 @@ public class AudioManager : MonoBehaviour
             GameObject tempObj = new GameObject();
             AudioSource clip = tempObj.AddComponent<AudioSource>();
             clip.spatialBlend = 1f;
-            clip.minDistance = 1f;
+            clip.minDistance = 2f;
             clip.maxDistance = 15f;
 
             tempObj.transform.SetParent(positionOfTrigger, true);
