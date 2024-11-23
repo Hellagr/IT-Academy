@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     [SerializeField] float speed = 5.0f;
     [SerializeField] float runnigSpeed = 10.0f;
     CharacterController characterController;
-    //Coroutine chechingLastPositionCoroutine;
     Vector3 lastPosition;
     Vector2 moveInput;
     float gravity = -9.81f;
@@ -31,11 +30,20 @@ public class Movement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
+    void OnEnable()
+    {
+        InputSystemActions.Player.Move.performed += OnMovement;
+        InputSystemActions.Player.Move.canceled += MovementCalceled;
+        InputSystemActions.Player.Sprint.performed += context => isRunnig = true;
+        InputSystemActions.Player.Sprint.canceled += context => isRunnig = false;
+        InputSystemActions.Player.Jump.performed += Jump;
+        InputSystemActions.Enable();
+    }
+
     void OnMovement(InputAction.CallbackContext context)
     {
         isMoving = true;
         moveInput = context.ReadValue<Vector2>();
-        //chechingLastPositionCoroutine = StartCoroutine(LastPosition());
     }
 
     void MovementCalceled(InputAction.CallbackContext context)
@@ -43,7 +51,6 @@ public class Movement : MonoBehaviour
         isMoving = false;
         timeHasPassed = 0f;
         moveInput = Vector2.zero;
-        //StopCoroutine(chechingLastPositionCoroutine);
     }
 
     void Jump(InputAction.CallbackContext context)
@@ -53,25 +60,6 @@ public class Movement : MonoBehaviour
             isJumping = true;
             speedYaxis = jumpSpeed;
         }
-    }
-
-    //IEnumerator LastPosition()
-    //{
-    //    while (true)
-    //    {
-    //        lastPosition = transform.position;
-    //        yield return new WaitForSeconds(timeForAudioOfRunning - 0.1f);
-    //    }
-    //}
-
-    void OnEnable()
-    {
-        InputSystemActions.Player.Move.performed += OnMovement;
-        InputSystemActions.Player.Move.canceled += MovementCalceled;
-        InputSystemActions.Player.Sprint.performed += context => isRunnig = true;
-        InputSystemActions.Player.Sprint.canceled += context => isRunnig = false;
-        InputSystemActions.Player.Jump.performed += Jump;
-        InputSystemActions.Enable();
     }
 
     void OnDisable()

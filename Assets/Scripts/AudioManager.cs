@@ -51,9 +51,6 @@ public class AudioManager : MonoBehaviour
         Vector3 stepInLocal = isStepLeft ? leftStep : rightStep;
         Vector3 stepInGlobal = playerTransform.transform.TransformPoint(stepInLocal);
 
-        //var need = playerTransform.TransformPoint(stepInLocal);
-
-
         GameObject step = Instantiate(stepPrefab, stepInGlobal, playerTransform.transform.rotation);
         Destroy(step, 1f);
     }
