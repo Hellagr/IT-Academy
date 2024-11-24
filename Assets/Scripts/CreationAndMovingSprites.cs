@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MoveSprite : MonoBehaviour
+public class CreationAndMovingSprites : MonoBehaviour
 {
-    [SerializeField] SwapDirection swapDirection;
+    [SerializeField] CharacterController changeDirection;
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject spritePrefab;
     [SerializeField] float speedOfSprite = 1f;
@@ -18,19 +18,13 @@ public class MoveSprite : MonoBehaviour
 
     private void Start()
     {
-        aspectRatio = (float)Screen.width / Screen.height;
-        cameraOrtographicSize = mainCamera.orthographicSize;
-        screenWidth = 2 * cameraOrtographicSize * aspectRatio;
-        halfScreenWidth = screenWidth / 2;
-        extendScreenWidth = halfScreenWidth + screenWidth;
+        CalculateScreenSize();
+        CalculateSpriteSize();
+        CreateNecessaryAmountOfSprites();
+    }
 
-        var spriteRendererOfObject = spritePrefab.GetComponent<SpriteRenderer>();
-        spriteWidth = spriteRendererOfObject.size.x;
-        halfOfSpriteWidth = spriteWidth / 2;
-        necessaryAmountOfSpritesForRightSide = Mathf.Ceil((halfScreenWidth - halfOfSpriteWidth + screenWidth) / screenWidth);
-
-        centerOfRightExtremeSprite = spriteWidth;
-
+    private void CreateNecessaryAmountOfSprites()
+    {
         Instantiate(spritePrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
         for (int i = 0; i < necessaryAmountOfSpritesForRightSide; i++)
         {
@@ -40,6 +34,24 @@ public class MoveSprite : MonoBehaviour
         }
     }
 
+    private void CalculateSpriteSize()
+    {
+        var spriteRendererOfObject = spritePrefab.GetComponent<SpriteRenderer>();
+        spriteWidth = spriteRendererOfObject.size.x * 1.5f;
+        halfOfSpriteWidth = spriteWidth / 2;
+        necessaryAmountOfSpritesForRightSide = Mathf.Ceil((halfScreenWidth - halfOfSpriteWidth + screenWidth) / screenWidth);
+        centerOfRightExtremeSprite = spriteWidth;
+    }
+
+    private void CalculateScreenSize()
+    {
+        aspectRatio = (float)Screen.width / Screen.height;
+        cameraOrtographicSize = mainCamera.orthographicSize;
+        screenWidth = 2 * cameraOrtographicSize * aspectRatio;
+        halfScreenWidth = screenWidth / 2;
+        extendScreenWidth = halfScreenWidth + screenWidth;
+    }
+
     void Update()
     {
         if (transform.position.x >= spriteWidth || transform.position.x <= -spriteWidth)
@@ -47,7 +59,7 @@ public class MoveSprite : MonoBehaviour
             transform.position = new Vector3(0, 0, 0);
         }
 
-        float speed = swapDirection.isRight ? -speedOfSprite : speedOfSprite;
+        float speed = changeDirection.isRight ? -speedOfSprite : speedOfSprite;
 
         transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, 0, 0);
     }

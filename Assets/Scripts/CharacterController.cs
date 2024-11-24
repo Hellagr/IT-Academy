@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SwapDirection : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     InputSystem_Actions inputActions;
     public bool isRight = true;
