@@ -23,15 +23,12 @@ public class CreationAndMovingSprites : MonoBehaviour
         CreateNecessaryAmountOfSprites();
     }
 
-    private void CreateNecessaryAmountOfSprites()
+    private void CalculateScreenSize()
     {
-        Instantiate(spritePrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
-        for (int i = 0; i < necessaryAmountOfSpritesForRightSide; i++)
-        {
-            Instantiate(spritePrefab, new Vector3(centerOfRightExtremeSprite, 0, 0), Quaternion.identity, transform);
-            Instantiate(spritePrefab, new Vector3(-centerOfRightExtremeSprite, 0, 0), Quaternion.identity, transform);
-            centerOfRightExtremeSprite += spriteWidth;
-        }
+        aspectRatio = (float)Screen.width / Screen.height;
+        cameraOrtographicSize = mainCamera.orthographicSize;
+        screenWidth = 2 * cameraOrtographicSize * aspectRatio;
+        halfScreenWidth = screenWidth / 2;
     }
 
     private void CalculateSpriteSize()
@@ -42,14 +39,16 @@ public class CreationAndMovingSprites : MonoBehaviour
         necessaryAmountOfSpritesForRightSide = Mathf.Ceil((halfScreenWidth - halfOfSpriteWidth + screenWidth) / screenWidth);
         centerOfRightExtremeSprite = spriteWidth;
     }
-
-    private void CalculateScreenSize()
+    private void CreateNecessaryAmountOfSprites()
     {
-        aspectRatio = (float)Screen.width / Screen.height;
-        cameraOrtographicSize = mainCamera.orthographicSize;
-        screenWidth = 2 * cameraOrtographicSize * aspectRatio;
-        halfScreenWidth = screenWidth / 2;
-        extendScreenWidth = halfScreenWidth + screenWidth;
+        Instantiate(spritePrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
+
+        for (int i = 0; i < necessaryAmountOfSpritesForRightSide; i++)
+        {
+            Instantiate(spritePrefab, new Vector3(centerOfRightExtremeSprite, 0, 0), Quaternion.identity, transform);
+            Instantiate(spritePrefab, new Vector3(-centerOfRightExtremeSprite, 0, 0), Quaternion.identity, transform);
+            centerOfRightExtremeSprite += spriteWidth;
+        }
     }
 
     void Update()
