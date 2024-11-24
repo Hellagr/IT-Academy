@@ -39,6 +39,7 @@ public class CreationAndMovingSprites : MonoBehaviour
         necessaryAmountOfSpritesForRightSide = Mathf.Ceil((halfScreenWidth - halfOfSpriteWidth + screenWidth) / screenWidth);
         centerOfRightExtremeSprite = spriteWidth;
     }
+
     private void CreateNecessaryAmountOfSprites()
     {
         Instantiate(spritePrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
