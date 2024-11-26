@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5335f9ad129a13b4a84cc22181f32a7d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156299
+  packageName: Tiny Platformer - Forest Asset Pack
+  packageVersion: 1.0
+  assetPath: Assets/Tiny Platformer - Forest Asset Pack/Tilemap/Tiles/Tileset_32.asset
+  uploadId: 335029
