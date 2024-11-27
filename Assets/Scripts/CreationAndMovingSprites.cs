@@ -34,9 +34,6 @@ public class CreationAndMovingSprites : MonoBehaviour
     private void CalculateSpriteSize()
     {
         var spriteRendererOfObject = spritePrefab.GetComponent<SpriteRenderer>();
-
-        Debug.Log(spritePrefab.transform.localScale.x);
-
         spriteWidth = spriteRendererOfObject.size.x * spritePrefab.transform.localScale.x;
         halfOfSpriteWidth = spriteWidth / 2;
         necessaryAmountOfSpritesForRightSide = Mathf.Ceil((halfScreenWidth - halfOfSpriteWidth + screenWidth) / screenWidth);
