@@ -1,20 +1,27 @@
 using UnityEngine;
-public static class AnimationHashes
+using System;
+
+public static class AnimatorVariables
 {
-    public static readonly int WALKTOPLEFT = Animator.StringToHash("WalkTopLeft");
-    public static readonly int WALKTOPRIGHT = Animator.StringToHash("WalkTopRight");
-    public static readonly int WALKBOTTOMLEFT = Animator.StringToHash("WalkBottomLeft");
-    public static readonly int WALKBOTTOMRIGHT = Animator.StringToHash("WalkBottomRight");
-    public static readonly int IDLETOPLEFT = Animator.StringToHash("IdleTopLeft");
-    public static readonly int IDLETOPRIGHT = Animator.StringToHash("IdleTopRight");
-    public static readonly int IDLEBOTTOMLEFT = Animator.StringToHash("IdleBottomLeft");
-    public static readonly int IDLEBOTTOMRIGHT = Animator.StringToHash("IdleBottomRight");
+    public const string SPEEDX = "SpeedX";
+    public const string SPEEDY = "SpeedY";
+    public const string ISIDLE = "isIdle";
 }
+
+//public static class AnimationHashes
+//{
+//    public static readonly int SPEEDX = Animator.StringToHash("SpeedX");
+//    public static readonly int SPEEDY = Animator.StringToHash("SpeedY");
+//    public static readonly int ISIDLE = Animator.StringToHash("isIdle");
+//}
 
 public class AnimatorManager : MonoBehaviour
 {
     Animator animator;
     CharacterMovement characterMovement;
+    bool isIdle = true;
+    int currentStateX = 0;
+    int currentStateY = 0;
 
     void Awake()
     {
@@ -24,30 +31,19 @@ public class AnimatorManager : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Approximately(characterMovement.newVector.x, 2) && Mathf.Approximately(characterMovement.newVector.y, 1))
+        if (currentStateX != Math.Sign(characterMovement.moveInput.x) || currentStateY != Math.Sign(characterMovement.moveInput.y))
         {
-            animator.SetInteger("SpeedX", 2);
-            animator.SetInteger("SpeedY", 1);
+            isIdle = characterMovement.moveInput == Vector2.zero;
+            currentStateX = Math.Sign(characterMovement.moveInput.x);
+            currentStateY = Math.Sign(characterMovement.moveInput.y);
+            SetAnimatorFloat();
         }
-        else if (Mathf.Approximately(characterMovement.newVector.x, -2) && Mathf.Approximately(characterMovement.newVector.y, 1))
-        {
-            animator.SetInteger("SpeedX", -2);
-            animator.SetInteger("SpeedY", 1);
-        }
-        else if (Mathf.Approximately(characterMovement.newVector.x, -2) && Mathf.Approximately(characterMovement.newVector.y, -1))
-        {
-            animator.SetInteger("SpeedX", -2);
-            animator.SetInteger("SpeedY", -1);
-        }
-        else if (Mathf.Approximately(characterMovement.newVector.x, 2) && Mathf.Approximately(characterMovement.newVector.y, -1))
-        {
-            animator.SetInteger("SpeedX", 2);
-            animator.SetInteger("SpeedY", -1);
-        }
-        else
-        {
-            animator.SetInteger("SpeedX", 0);
-            animator.SetInteger("SpeedY", 0);
-        }
+    }
+
+    void SetAnimatorFloat()
+    {
+        animator.SetInteger(AnimatorVariables.SPEEDX, Math.Sign(characterMovement.moveInput.x));
+        animator.SetInteger(AnimatorVariables.SPEEDY, Math.Sign(characterMovement.moveInput.y));
+        animator.SetBool(AnimatorVariables.ISIDLE, isIdle);
     }
 }
