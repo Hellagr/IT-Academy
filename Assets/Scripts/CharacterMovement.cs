@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] Grid terrainCells;
+    [SerializeField] float speed = 1.0f;
     public Vector2 newVector;
     public Vector2 moveInput;
 
@@ -11,7 +12,6 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody2D rb;
     Vector2 forward = Vector2.up;
     Vector2 right = Vector2.right;
-    float speed = 2.0f;
 
     void Awake()
     {
@@ -76,7 +76,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        rb.linearVelocity = forward * moveInput.y + right * moveInput.x;
+        rb.linearVelocity = (forward * moveInput.y + right * moveInput.x) * speed;
     }
 
 }

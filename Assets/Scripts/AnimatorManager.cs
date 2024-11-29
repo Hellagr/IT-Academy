@@ -8,13 +8,6 @@ public static class AnimatorVariables
     public const string ISIDLE = "isIdle";
 }
 
-//public static class AnimationHashes
-//{
-//    public static readonly int SPEEDX = Animator.StringToHash("SpeedX");
-//    public static readonly int SPEEDY = Animator.StringToHash("SpeedY");
-//    public static readonly int ISIDLE = Animator.StringToHash("isIdle");
-//}
-
 public class AnimatorManager : MonoBehaviour
 {
     Animator animator;
