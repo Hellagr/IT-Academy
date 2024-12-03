@@ -3,8 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Input : MonoBehaviour
 {
-    [SerializeField] CubeCreateion cubeCreateion;
-    [SerializeField] CollisionHandler collisionHandler;
+    [SerializeField] CreationOtherCubes creationOtherCubes;
     InputSystem_Actions action;
 
     void Awake()
@@ -23,7 +22,7 @@ public class Input : MonoBehaviour
 
 
         //cubeCreateion.RecreateCube();
-        cubeCreateion.CreateARandomCube();
+        creationOtherCubes.CreateARandomCube();
 
         //Debug.Log($"static {cubeCreateion.previousObject.transform.position}");
         //Debug.Log($"moving{cubeCreateion.movingObject.transform.position}");

@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 89702356}
   - component: {fileID: 89702358}
   - component: {fileID: 89702357}
-  - component: {fileID: 89702359}
   m_Layer: 0
   m_Name: MainCube
   m_TagString: Untagged
@@ -221,7 +220,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materials:
   - {fileID: 2100000, guid: 62102c1c5e131fd4a8c904f827911228, type: 2}
-  randomSpotDistance: 4
+  highOfObject: 0
+  top: 0.25
+  bottom: -0.25
+  right: 0.5
+  left: -0.5
 --- !u!114 &89702358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,21 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65bc5ed7c91c1f43950f7c67b2d7506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeCreateion: {fileID: 89702357}
-  collisionHandler: {fileID: 89702359}
---- !u!114 &89702359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89702352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 901934a9b4ca8234e925a763c66c5f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentObject: {fileID: 89702352}
+  creationOtherCubes: {fileID: 550193094}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +496,54 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 3
+--- !u!1 &550193093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550193095}
+  - component: {fileID: 550193094}
+  m_Layer: 0
+  m_Name: OtherCube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &550193094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550193093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354b2cc88d8cb344091f59e9409c7d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomSpotDistance: 3
+  mainCubeCreation: {fileID: 89702357}
+  previousObject: {fileID: 0}
+  movingObject: {fileID: 0}
+--- !u!4 &550193095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550193093}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,3 +601,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 89702354}
+  - {fileID: 550193095}
