@@ -22,7 +22,10 @@ public class Input : MonoBehaviour
 
     void StopObject(InputAction.CallbackContext context)
     {
-        gameManager.CutTheMovingObject();
+        if (gameManager.enabled)
+        {
+            gameManager.CutTheMovingObject();
+        }
     }
 
     void OnDisable()
