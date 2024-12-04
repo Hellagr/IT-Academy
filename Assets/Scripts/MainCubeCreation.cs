@@ -46,10 +46,10 @@ public class MainCubeCreateion : MonoBehaviour
         return new int[]
         {
             //looking from top
-            0,3,1,0,2,3, //bottom
-            3,2,4,4,2,5, //right
             5,6,4,5,7,6, //top
+            3,2,4,4,2,5, //right
             0,1,6,6,7,0, //left
+            0,3,1,0,2,3, //bottom
             3,4,6,6,1,3, //forward
             0,7,5,0,5,2 //backward
         };

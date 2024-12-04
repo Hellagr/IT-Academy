@@ -1,26 +1,32 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CreationOtherCubes : MonoBehaviour
 {
+    [SerializeField] CinemachineCamera cinemachineCamera;
     [SerializeField] float randomSpotDistance = 3f;
-    [SerializeField] GameObject mainCube;
-    GameObject previousObject;
-    GameObject movingObject;
+    [SerializeField] float speed = 1f;
+    public GameObject mainCube;
+    public GameObject previousObject;
+    public GameObject movingObject;
     MainCubeCreateion mainCubeCreation;
     Vector3 lastObjectPos;
     Vector3 directionOfObject;
+    float prevPosX;
+    float prevPosZ;
 
     void Start()
     {
         mainCubeCreation = mainCube.GetComponent<MainCubeCreateion>();
         lastObjectPos = mainCube.transform.position;
-        previousObject = mainCube;
         CreateARandomCube();
     }
 
     public void CreateARandomCube()
     {
         var newHighOfObject = lastObjectPos.y + mainCubeCreation.highOfObject;
+        prevPosX = movingObject != null ? movingObject.transform.position.x : mainCube.transform.position.x;
+        prevPosZ = movingObject != null ? movingObject.transform.position.z : mainCube.transform.position.z;
 
         Vector3 posForNewObj = CalculateNewPosition(newHighOfObject);
         CalculateNewRotation(posForNewObj);
@@ -31,9 +37,6 @@ public class CreationOtherCubes : MonoBehaviour
     public Vector3 CalculateNewPosition(float newHighOfObject)
     {
         Vector3 posForNewObj;
-
-        float prevPosX = previousObject != null ? previousObject.transform.position.x : mainCube.transform.position.x;
-        float prevPosZ = previousObject != null ? previousObject.transform.position.z : mainCube.transform.position.z;
 
         if (Random.Range(0, 2) == 0)
         {
@@ -50,9 +53,6 @@ public class CreationOtherCubes : MonoBehaviour
 
     private void CalculateNewRotation(Vector3 posForNewObj)
     {
-        float prevPosX = previousObject != null ? previousObject.transform.position.x : mainCube.transform.position.x;
-        float prevPosZ = previousObject != null ? previousObject.transform.position.z : mainCube.transform.position.z;
-
         Vector2 objectPosition = new Vector2(posForNewObj.x, posForNewObj.z);
         Vector2 targetPosition = new Vector2(prevPosX, prevPosZ);
         directionOfObject = new Vector3(targetPosition.x - objectPosition.x, 0f, targetPosition.y - objectPosition.y);
@@ -60,16 +60,30 @@ public class CreationOtherCubes : MonoBehaviour
 
     private void CreateNewObject(Vector3 posForNewObj)
     {
+        if (previousObject == null)
+        {
+            previousObject = mainCube;
+        }
+        else
+        {
+            previousObject = movingObject;
+        }
+
+        cinemachineCamera.Follow = previousObject.transform;
+        cinemachineCamera.LookAt = previousObject.transform;
+
+        var prevMesh = previousObject.GetComponent<MeshFilter>().mesh;
+
         movingObject = Instantiate(previousObject, posForNewObj, Quaternion.identity);
+        movingObject.GetComponent<MeshFilter>().mesh = prevMesh;
         movingObject.transform.position = posForNewObj;
-        previousObject = movingObject;
     }
 
     void Update()
     {
         if (movingObject != null)
         {
-            movingObject.transform.Translate(directionOfObject * 0.005f, Space.Self);
+            movingObject.transform.Translate(directionOfObject * speed * Time.deltaTime, Space.Self);
         }
     }
 }

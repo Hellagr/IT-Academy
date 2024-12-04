@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Input : MonoBehaviour
 {
-    [SerializeField] CreationOtherCubes creationOtherCubes;
+    GameManager gameManager;
     InputSystem_Actions action;
 
     void Awake()
     {
+        gameManager = GetComponent<GameManager>();
         action = new InputSystem_Actions();
     }
 
@@ -19,14 +22,7 @@ public class Input : MonoBehaviour
 
     void StopObject(InputAction.CallbackContext context)
     {
-
-
-        //cubeCreateion.RecreateCube();
-        creationOtherCubes.CreateARandomCube();
-
-        //Debug.Log($"static {cubeCreateion.previousObject.transform.position}");
-        //Debug.Log($"moving{cubeCreateion.movingObject.transform.position}");
-
+        gameManager.CutTheMovingObject();
     }
 
     void OnDisable()
