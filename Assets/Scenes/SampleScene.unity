@@ -1159,7 +1159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05584419c5969514abf15d94f776ed1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelUI: {fileID: 0}
+  creationOtherCubes: {fileID: 550193094}
+  PanelUI: {fileID: 789899761}
 --- !u!114 &1697098415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,8 +1173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65bc5ed7c91c1f43950f7c67b2d7506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creationOtherCubes: {fileID: 550193094}
-  PanelUI: {fileID: 789899761}
 --- !u!4 &1697098416
 Transform:
   m_ObjectHideFlags: 0
