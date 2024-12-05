@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject PanelUI;
     [SerializeField] TMP_Text result;
     [SerializeField] TMP_Text onlineResult;
-    public Input inputScript;
+    Input inputScript;
     public float timeToLose = 0f;
     int score = 0;
 

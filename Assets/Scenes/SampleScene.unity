@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 26.619003, y: 0, z: 26.730331, w: 9.634636}
+  m_margin: {x: 26.619003, y: 0, z: -20.551826, w: 9.634636}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1635,6 +1635,7 @@ MonoBehaviour:
   PanelUI: {fileID: 789899761}
   result: {fileID: 976082113}
   onlineResult: {fileID: 1594075875}
+  timeToLose: 0
 --- !u!114 &1697098415
 MonoBehaviour:
   m_ObjectHideFlags: 0
