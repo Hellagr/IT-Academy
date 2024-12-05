@@ -18,11 +18,12 @@ public class Input : MonoBehaviour
         action.Enable();
     }
 
-    void StopObject(InputAction.CallbackContext context)
+    public void StopObject(InputAction.CallbackContext context)
     {
         if (gameManager.enabled)
         {
             gameManager.CutTheMovingObject();
+            gameManager.timeToLose = 0f;
         }
     }
 

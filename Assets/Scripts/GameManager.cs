@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -7,8 +8,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] CreationOtherCubes creationOtherCubes;
     [SerializeField] MainCubeCreateion mainCubeCreateion;
     [SerializeField] GameObject PanelUI;
-    [SerializeField] TMP_Text textMeshPro;
+    [SerializeField] TMP_Text result;
+    [SerializeField] TMP_Text onlineResult;
+    public Input inputScript;
+    public float timeToLose = 0f;
     int score = 0;
+
+    void Start()
+    {
+        inputScript = GetComponent<Input>();
+    }
 
     public void CutTheMovingObject()
     {
@@ -65,11 +74,17 @@ public class GameManager : MonoBehaviour
         if (this.enabled)
         {
             score++;
-            textMeshPro.text =
-                "You've got\n" +
-                $"{score}\n" +
-                "points";
+            onlineResult.text = $"Points: {score}";
             creationOtherCubes.CreateARandomCube();
+        }
+        else
+        {
+            result.text =
+            "You've got\n" +
+            $"{score}\n" +
+            "points";
+
+            onlineResult.enabled = false;
         }
     }
 
@@ -140,5 +155,15 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
+    }
+
+    void Update()
+    {
+        timeToLose += Time.deltaTime;
+        if (timeToLose > 4)
+        {
+            InputAction.CallbackContext context = new InputAction.CallbackContext();
+            inputScript.StopObject(context);
+        }
     }
 }

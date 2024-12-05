@@ -10,14 +10,7 @@ public class MainCubeCreateion : MonoBehaviour
     Mesh mesh;
     MeshRenderer meshRenderer;
     MeshCollider meshCollider;
-    Quaternion rotationOfMovement;
     public float highOfObject;
-    public float top = 0.25f;
-    public float bottom = -0.25f;
-    public float right = 0.5f;
-    public float left = -0.5f;
-
-    Vector3 directionOfObject;
 
     void Awake()
     {

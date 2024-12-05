@@ -5,7 +5,7 @@ public class CreationOtherCubes : MonoBehaviour
 {
     [SerializeField] CinemachineCamera cinemachineCamera;
     [SerializeField] float randomSpotDistance = 3f;
-    [SerializeField] float speed = 1f;
+    [SerializeField] float speed = 0.5f;
     public GameObject mainCube;
     public GameObject previousObject;
     public GameObject movingObject;
