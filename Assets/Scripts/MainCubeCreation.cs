@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshCollider))]
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
 public class MainCubeCreateion : MonoBehaviour
 {
-    [SerializeField] List<Material> materials;
+    public List<Material> materials;
     Mesh mesh;
     MeshRenderer meshRenderer;
+    MeshCollider meshCollider;
     Quaternion rotationOfMovement;
     public float highOfObject;
     public float top = 0.25f;
@@ -17,16 +21,19 @@ public class MainCubeCreateion : MonoBehaviour
 
     void Awake()
     {
+        meshCollider = GetComponent<MeshCollider>();
+        meshCollider.convex = true;
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.SetMaterials(materials);
         mesh = GetComponent<MeshFilter>().mesh;
-        mesh.vertices = GenerateVertices(transform.position);
+        mesh.vertices = GenerateVertices();
         mesh.triangles = GenerateTriangles();
         mesh.RecalculateNormals();
         highOfObject = meshRenderer.bounds.max.y * 2;
+        meshCollider.sharedMesh = mesh;
     }
 
-    Vector3[] GenerateVertices(Vector3 positionOfObj)
+    Vector3[] GenerateVertices()
     {
         return new Vector3[]
         {
@@ -41,7 +48,7 @@ public class MainCubeCreateion : MonoBehaviour
         };
     }
 
-    int[] GenerateTriangles()
+    public int[] GenerateTriangles()
     {
         return new int[]
         {

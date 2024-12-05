@@ -1,110 +1,139 @@
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] CreationOtherCubes creationOtherCubes;
+    [SerializeField] MainCubeCreateion mainCubeCreateion;
     [SerializeField] GameObject PanelUI;
+    [SerializeField] TMP_Text textMeshPro;
+    int score = 0;
 
     public void CutTheMovingObject()
     {
-        GameObject restOfCube = creationOtherCubes.movingObject;
+        GameObject prevObject = creationOtherCubes.previousObject;
+        GameObject movingObject = creationOtherCubes.movingObject;
+        GameObject restOfCube = Instantiate(movingObject);
 
-        var preObj = creationOtherCubes.previousObject.GetComponent<MeshFilter>().mesh;
-        var movingObj = creationOtherCubes.movingObject.GetComponent<MeshFilter>().mesh;
+        var prevObjectMesh = prevObject.GetComponent<MeshFilter>().mesh;
+        var movingObjectMesh = movingObject.GetComponent<MeshFilter>().mesh;
         var restOfCubeMesh = restOfCube.GetComponent<MeshFilter>().mesh;
 
-        Vector3[] vertices1 = preObj.vertices;
-        Vector3[] vertices2 = movingObj.vertices;
-        Vector3[] vertices3 = restOfCubeMesh.vertices;
+        Vector3[] vertices1 = prevObjectMesh.vertices;
+        Vector3[] vertices2 = movingObjectMesh.vertices;
+        Vector3[] vertices3 = movingObjectMesh.vertices;
 
-        var preObjXmax = creationOtherCubes.previousObject.transform.TransformPoint(preObj.bounds.max).x;
-        var preObjXmin = creationOtherCubes.previousObject.transform.TransformPoint(preObj.bounds.min).x;
-        var preObjZmax = creationOtherCubes.previousObject.transform.TransformPoint(preObj.bounds.max).z;
-        var preObjZmin = creationOtherCubes.previousObject.transform.TransformPoint(preObj.bounds.min).z;
+        Vector3 prevObjMaxGlobal = prevObject.transform.TransformPoint(prevObjectMesh.bounds.max);
+        Vector3 prevObjMinGlobal = prevObject.transform.TransformPoint(prevObjectMesh.bounds.min);
+
+        float prevObjXmax = prevObjMaxGlobal.x;
+        float prevObjXmin = prevObjMinGlobal.x;
+        float prevObjZmax = prevObjMaxGlobal.z;
+        float prevObjZmin = prevObjMinGlobal.z;
+
+        Vector3 prevObjectCenter = prevObject.transform.position;
+        Vector3 movingObjectCenter = movingObject.transform.position;
+
+        //Is behind of previousObject
+        bool isMovingObjectBehind = prevObjectCenter.x > movingObjectCenter.x || prevObjectCenter.z > movingObjectCenter.z;
+
+        Vector3 movingObjectGlobalPosition = movingObject.transform.position;
 
         for (var i = 0; i < vertices2.Length; i++)
         {
-            Vector3 vertexInGlobal = creationOtherCubes.movingObject.transform.TransformPoint(vertices2[i]);
+            Vector3 vertexInGlobal = movingObjectGlobalPosition + vertices2[i];
             float xVertexInGlobal = vertexInGlobal.x;
             float yVertexInGlobal = vertexInGlobal.y;
             float zVertexInGlobal = vertexInGlobal.z;
 
-            CheckXaxis(vertices2, vertices3, preObjXmax, preObjXmin, i, xVertexInGlobal, yVertexInGlobal, zVertexInGlobal);
-            CheckZaxis(vertices2, vertices3, preObjZmax, preObjZmin, i, xVertexInGlobal, yVertexInGlobal, zVertexInGlobal);
+            if (prevObjectCenter.z == movingObjectCenter.z)
+            {
+                CheckXaxis(movingObject, vertices2, vertices3, prevObjXmax, prevObjXmin, i, xVertexInGlobal, yVertexInGlobal, zVertexInGlobal, isMovingObjectBehind);
+            }
+            else
+            {
+                CheckZaxis(movingObject, vertices2, vertices3, prevObjZmax, prevObjZmin, i, xVertexInGlobal, yVertexInGlobal, zVertexInGlobal, isMovingObjectBehind);
+            }
         }
 
-        //CreateRestOfCube(restOfCube, restOfCubeMesh, vertices3);
+        RecalculateRestOfObject(restOfCube, restOfCubeMesh, vertices3);
+        RecalculateMovingObject(movingObject, movingObjectMesh, vertices2);
 
-        movingObj.vertices = vertices2;
-        movingObj.RecalculateBounds();
-        movingObj.RecalculateNormals();
+        CheckIfPlayerLose(movingObject, movingObjectMesh.bounds.max.x, movingObjectMesh.bounds.min.x, movingObjectMesh.bounds.max.z, movingObjectMesh.bounds.min.z, creationOtherCubes);
 
-        CheckIfPlayerLose(movingObj.bounds.max.x, movingObj.bounds.min.x, movingObj.bounds.max.z, movingObj.bounds.min.z, creationOtherCubes);
-
-        if (creationOtherCubes.previousObject != null && creationOtherCubes.movingObject != null)
+        if (this.enabled)
         {
+            score++;
+            textMeshPro.text =
+                "You've got\n" +
+                $"{score}\n" +
+                "points";
             creationOtherCubes.CreateARandomCube();
         }
     }
 
-    void CheckXaxis(Vector3[] vertices2, Vector3[] vertices3, float preObjXmax, float preObjXmin, int i, float xVertexInGlobal, float yVertexInGlobal, float zVertexInGlobal)
+    void CheckXaxis(GameObject movingObject, Vector3[] vertices2, Vector3[] vertices3, float prevObjXmax, float prevObjXmin, int i, float xVertexInGlobal, float yVertexInGlobal, float zVertexInGlobal, bool isMovingObjectBehind)
     {
-        if (xVertexInGlobal < preObjXmin || xVertexInGlobal > preObjXmax)
-        {
-            float xPosition = (xVertexInGlobal < preObjXmin) ? preObjXmin : preObjXmax;
-            Vector3 globalPosition = new Vector3(xPosition, yVertexInGlobal, zVertexInGlobal);
-            vertices2[i] = creationOtherCubes.movingObject.transform.InverseTransformPoint(globalPosition);
-        }
+        float xPosition = isMovingObjectBehind ? prevObjXmin : prevObjXmax;
+        Vector3 globalPosition = new Vector3(xPosition, yVertexInGlobal, zVertexInGlobal);
 
-        //rest
-        if (xVertexInGlobal < preObjXmin || xVertexInGlobal > preObjXmax)
+        if (xVertexInGlobal < prevObjXmin || xVertexInGlobal > prevObjXmax)
         {
-            float xPosition = (xVertexInGlobal < preObjXmin) ? preObjXmin : preObjXmax;
-            Vector3 globalPositionOfRest = new Vector3(xPosition, yVertexInGlobal, zVertexInGlobal);
-            vertices3[i] = creationOtherCubes.movingObject.transform.InverseTransformPoint(globalPositionOfRest);
+            vertices2[i] = movingObject.transform.InverseTransformPoint(globalPosition);
+        }
+        else
+        {
+            vertices3[i] = movingObject.transform.InverseTransformPoint(globalPosition);
         }
     }
 
-    void CheckZaxis(Vector3[] vertices2, Vector3[] vertices3, float preObjZmax, float preObjZmin, int i, float xVertexInGlobal, float yVertexInGlobal, float zVertexInGlobal)
+    void CheckZaxis(GameObject movingObject, Vector3[] vertices2, Vector3[] vertices3, float prevObjZmax, float prevObjZmin, int i, float xVertexInGlobal, float yVertexInGlobal, float zVertexInGlobal, bool isMovingObjectBehind)
     {
-        if (zVertexInGlobal < preObjZmin || zVertexInGlobal > preObjZmax)
-        {
-            float zPosition = (zVertexInGlobal < preObjZmin) ? preObjZmin : preObjZmax;
-            Vector3 globalPositionOfCube = new Vector3(xVertexInGlobal, yVertexInGlobal, zPosition);
-            vertices2[i] = creationOtherCubes.movingObject.transform.InverseTransformPoint(globalPositionOfCube);
-        }
+        float zPosition = isMovingObjectBehind ? prevObjZmin : prevObjZmax;
+        Vector3 globalPosition = new Vector3(xVertexInGlobal, yVertexInGlobal, zPosition);
 
-        //rest
-        if (zVertexInGlobal < preObjZmin || zVertexInGlobal > preObjZmax)
+        if (zVertexInGlobal < prevObjZmin || zVertexInGlobal > prevObjZmax)
         {
-            float zPosition = (zVertexInGlobal < preObjZmin) ? preObjZmin : preObjZmax;
-            Vector3 globalPositionOfRest = new Vector3(xVertexInGlobal, yVertexInGlobal, zPosition);
-            vertices3[i] = creationOtherCubes.movingObject.transform.InverseTransformPoint(globalPositionOfRest);
+            vertices2[i] = movingObject.transform.InverseTransformPoint(globalPosition);
+        }
+        else
+        {
+            vertices3[i] = movingObject.transform.InverseTransformPoint(globalPosition);
         }
     }
 
-    void CheckIfPlayerLose(float xMax, float xMin, float zMax, float zMin, CreationOtherCubes creationOtherCubes)
+    void CheckIfPlayerLose(GameObject movingObject, float xMax, float xMin, float zMax, float zMin, CreationOtherCubes creationOtherCubes)
     {
         if (Mathf.Approximately(xMax, xMin) || Mathf.Approximately(zMax, zMin))
         {
             this.enabled = false;
             PanelUI.SetActive(true);
-            Destroy(creationOtherCubes.previousObject);
-            Destroy(creationOtherCubes.movingObject);
+            Destroy(movingObject);
 
             Time.timeScale = 0f;
         }
     }
 
-    void CreateRestOfCube(GameObject restOfCube, Mesh oldMesh, Vector3[] newVertices3)
+    void RecalculateRestOfObject(GameObject restOfCube, Mesh restOfCubeMesh, Vector3[] vertices3)
     {
-        GameObject restOfObj = new GameObject("rest", typeof(MeshFilter), typeof(MeshRenderer));
-        restOfObj.transform.position = new Vector3(restOfCube.transform.position.x - 5f, restOfCube.transform.position.y, restOfCube.transform.position.z - 5f);
-        var restMesh = restOfObj.GetComponent<MeshFilter>().mesh;
-        restMesh.vertices = newVertices3;
-        restOfCube.AddComponent<Rigidbody>();
+        var rbRestCube = restOfCube.AddComponent<Rigidbody>();
+        var meshColliderRestOfCube = restOfCube.GetComponent<MeshCollider>();
+        restOfCubeMesh.vertices = vertices3;
+        restOfCubeMesh.RecalculateBounds();
+        restOfCubeMesh.RecalculateNormals();
+        meshColliderRestOfCube.sharedMesh = restOfCubeMesh;
+        rbRestCube.useGravity = true;
+        Destroy(restOfCube, 4f);
+    }
+
+    void RecalculateMovingObject(GameObject movingObject, Mesh movingObjMesh, Vector3[] vertices2)
+    {
+        var meshColliderMovingObj = movingObject.GetComponent<MeshCollider>();
+        movingObjMesh.vertices = vertices2;
+        movingObjMesh.RecalculateBounds();
+        movingObjMesh.RecalculateNormals();
+        meshColliderMovingObj.sharedMesh = movingObjMesh;
     }
 
     public void Restart()
