@@ -4,14 +4,13 @@ using UnityEngine;
 public class CubeGenerator : MonoBehaviour
 {
     [SerializeField] float randomSpotDistance = 3f;
-    [SerializeField] float speed = 0.5f;
     [SerializeField] GameObject mainCube;
     [SerializeField] GameManager gameManager;
     public GameObject previousObject { get; set; }
     public GameObject movingObject { get; set; }
     MainCube mainCubeCreation;
     Vector3 lastObjectPos;
-    Vector3 directionOfObject;
+    public Vector3 directionOfObject { get; private set; }
     float prevPosX;
     float prevPosZ;
 
@@ -86,13 +85,5 @@ public class CubeGenerator : MonoBehaviour
         movingObject = Instantiate(previousObject, posForNewObj, Quaternion.identity);
         movingObject.GetComponent<MeshFilter>().mesh = prevMesh;
         movingObject.transform.position = posForNewObj;
-    }
-
-    void Update()
-    {
-        if (movingObject != null)
-        {
-            movingObject.transform.Translate(directionOfObject * speed * Time.deltaTime, Space.Self);
-        }
     }
 }
