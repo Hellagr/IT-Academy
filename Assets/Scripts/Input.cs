@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 
 public class Input : MonoBehaviour
 {
+    CubeDivider cubeDivider;
     GameManager gameManager;
     InputSystem_Actions action;
 
     void Awake()
     {
         gameManager = GetComponent<GameManager>();
+        cubeDivider = GetComponent<CubeDivider>();
         action = new InputSystem_Actions();
     }
 
@@ -22,8 +24,8 @@ public class Input : MonoBehaviour
     {
         if (gameManager.enabled)
         {
-            gameManager.CutTheMovingObject();
-            gameManager.timeToLose = 0f;
+            cubeDivider.CutTheMovingObject();
+            gameManager.ResetTimer();
         }
     }
 

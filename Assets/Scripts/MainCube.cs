@@ -4,13 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(MeshCollider))]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
-public class MainCubeCreateion : MonoBehaviour
+public class MainCube : MonoBehaviour
 {
-    public List<Material> materials;
+    [SerializeField] List<Material> materials;
+    public float highOfObject { get; private set; }
     Mesh mesh;
     MeshRenderer meshRenderer;
     MeshCollider meshCollider;
-    public float highOfObject;
 
     void Awake()
     {

@@ -1,23 +1,33 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class CreationOtherCubes : MonoBehaviour
+public class CubeGenerator : MonoBehaviour
 {
-    [SerializeField] CinemachineCamera cinemachineCamera;
     [SerializeField] float randomSpotDistance = 3f;
     [SerializeField] float speed = 0.5f;
-    public GameObject mainCube;
-    public GameObject previousObject;
-    public GameObject movingObject;
-    MainCubeCreateion mainCubeCreation;
+    [SerializeField] GameObject mainCube;
+    [SerializeField] GameManager gameManager;
+    public GameObject previousObject { get; set; }
+    public GameObject movingObject { get; set; }
+    MainCube mainCubeCreation;
     Vector3 lastObjectPos;
     Vector3 directionOfObject;
     float prevPosX;
     float prevPosZ;
 
+    public void SetPreviousObject(GameObject obj)
+    {
+        previousObject = obj;
+    }
+
+    public void SetMovingObject(GameObject obj)
+    {
+        movingObject = obj;
+    }
+
     void Start()
     {
-        mainCubeCreation = mainCube.GetComponent<MainCubeCreateion>();
+        mainCubeCreation = mainCube.GetComponent<MainCube>();
         lastObjectPos = mainCube.transform.position;
         CreateARandomCube();
     }
@@ -69,8 +79,7 @@ public class CreationOtherCubes : MonoBehaviour
             previousObject = movingObject;
         }
 
-        cinemachineCamera.Follow = previousObject.transform;
-        cinemachineCamera.LookAt = previousObject.transform;
+        gameManager.SetCameraPosition();
 
         var prevMesh = previousObject.GetComponent<MeshFilter>().mesh;
 

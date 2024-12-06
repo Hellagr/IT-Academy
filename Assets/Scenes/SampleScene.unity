@@ -409,7 +409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1780189, y: 0.37370566, z: -0.07332003, w: 0.9073464}
+  m_LocalRotation: {x: 0.17839026, y: 0.36907595, z: -0.072411686, w: 0.9092395}
   m_LocalPosition: {x: -2.65, y: 2.06, z: -2.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -731,7 +731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485702341}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1780189, y: 0.37370566, z: -0.07332002, w: 0.9073464}
+  m_LocalRotation: {x: 0.17839026, y: 0.36907598, z: -0.072411686, w: 0.9092395}
   m_LocalPosition: {x: -2.65, y: 2.06, z: -2.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 550193095}
   - component: {fileID: 550193094}
   m_Layer: 0
-  m_Name: CreatorOtherCubes
+  m_Name: CubeGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -768,12 +768,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354b2cc88d8cb344091f59e9409c7d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cinemachineCamera: {fileID: 485702344}
   randomSpotDistance: 3
   speed: 0.5
   mainCube: {fileID: 89702352}
-  previousObject: {fileID: 0}
-  movingObject: {fileID: 0}
+  gameManager: {fileID: 1697098414}
 --- !u!4 &550193095
 Transform:
   m_ObjectHideFlags: 0
@@ -1611,6 +1609,7 @@ GameObject:
   - component: {fileID: 1697098416}
   - component: {fileID: 1697098415}
   - component: {fileID: 1697098414}
+  - component: {fileID: 1697098417}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1630,12 +1629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05584419c5969514abf15d94f776ed1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creationOtherCubes: {fileID: 550193094}
-  mainCubeCreateion: {fileID: 89702357}
+  cinemachineCamera: {fileID: 485702344}
+  cubeGenerator: {fileID: 550193094}
   PanelUI: {fileID: 789899761}
   result: {fileID: 976082113}
   onlineResult: {fileID: 1594075875}
-  timeToLose: 0
+  timeToLose: 4
 --- !u!114 &1697098415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,6 +1662,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697098417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697098413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04905cacbf49f7e4098c8bfdccf43c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeGenerator: {fileID: 550193094}
 --- !u!1 &1699971933
 GameObject:
   m_ObjectHideFlags: 0
