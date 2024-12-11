@@ -11,7 +11,7 @@ public enum Ammo
 {
     Ball,
     Pistol,
-    Granade
+    Grenade
 }
 public class AmmoType : MonoBehaviour
 {

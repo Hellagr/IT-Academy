@@ -179,7 +179,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.01
+  m_Radius: 0.02
   m_Center: {x: 0, y: 0.009899214, z: 0}
 --- !u!54 &6411344490566713893
 Rigidbody:
@@ -220,4 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d359f7e05f7849b9181c505f4b890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffectPrefab: {fileID: 4304012809710604788, guid: 619b6028c6c05ad41ac0dbb86a313953, type: 3}
+  ammunitionCollision:
+  - {fileID: 4304012809710604788, guid: 619b6028c6c05ad41ac0dbb86a313953, type: 3}
+  timeToDestroyAmmo:
+  - 0.05
+  timeToDestroyVFX: 3
