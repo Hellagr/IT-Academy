@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7598284998422107193}
   - component: {fileID: -2127219395234556261}
   - component: {fileID: 5734107576147476504}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.2
   m_MaskInteraction: 0
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
 --- !u!114 &5734107576147476504
@@ -275,8 +275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d359f7e05f7849b9181c505f4b890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammunitionCollision:
-  - {fileID: 8176419340099958609, guid: 12b42665cf0def741a3cc7bf48980f98, type: 3}
-  timeToDestroyAmmo:
-  - 5
+  ammunitionCollision: {fileID: 8176419340099958609, guid: 12b42665cf0def741a3cc7bf48980f98, type: 3}
+  soundsImpactList:
+  - ammoType: 0
+    audioClip: {fileID: 8300000, guid: 35beb8e165918f44092e482f7fcff184, type: 3}
+  timeToSetInactive: 3
   timeToDestroyVFX: 3

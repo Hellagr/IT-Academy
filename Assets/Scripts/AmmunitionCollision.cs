@@ -1,14 +1,29 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+
+[Serializable]
+public struct AudioImpact
+{
+    public Ammo ammoType;
+    public AudioClip audioClip;
+}
 
 public class AmmunitionCollision : MonoBehaviour
 {
-    [SerializeField] List<GameObject> ammunitionCollision;
-    [SerializeField] List<float> timeToDestroyAmmo;
+    [SerializeField] GameObject ammunitionCollision;
+    [SerializeField] List<AudioImpact> soundsImpactList = new List<AudioImpact>();
+    [SerializeField] float timeToSetInactive = 3f;
     [SerializeField] float timeToDestroyVFX = 3f;
     Transform parentObject;
     Vector3 positionForEffect;
     Vector3 rotationForEffect;
+
+    void OnEnable()
+    {
+        Invoke("SetInActive", timeToSetInactive);
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -17,13 +32,26 @@ public class AmmunitionCollision : MonoBehaviour
         rotationForEffect = contact.normal;
         parentObject = collision.transform;
 
-        var effectForCollision = Instantiate(ammunitionCollision[0], positionForEffect, Quaternion.identity);
+        var effectForCollision = Instantiate(ammunitionCollision, positionForEffect, Quaternion.identity);
+
         effectForCollision.transform.forward = rotationForEffect + new Vector3(0.01f, 0.01f, 0.01f);
         effectForCollision.transform.SetParent(parentObject);
         effectForCollision.GetComponent<ParticleSystem>().Play();
 
-        Destroy(effectForCollision, timeToDestroyVFX);
+        var audioClip = effectForCollision.AddComponent<AudioSource>();
+        audioClip.spatialBlend = 1.0f;
+        PlaySoundOfImpact(audioClip);
 
-        Destroy(gameObject, timeToDestroyAmmo[0]);
+        Destroy(effectForCollision, timeToDestroyVFX);
+    }
+
+    private void PlaySoundOfImpact(AudioSource audioClip)
+    {
+        audioClip.PlayOneShot(soundsImpactList[0].audioClip);
+    }
+
+    void SetInActive()
+    {
+        gameObject.SetActive(false);
     }
 }

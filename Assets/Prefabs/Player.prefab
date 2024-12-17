@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 552233310134404771}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5370786185295367370}
   - component: {fileID: 5880374582216991756}
   - component: {fileID: 7759597763418492398}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -200,13 +200,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunPointImitation: {fileID: 0}
   cam: {fileID: 0}
-  ammoDatas:
-  - ammoType: 0
-    ammoPrefab: {fileID: 7570546555469102452, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
-    ammoForcePower: 20
-  - ammoType: 1
-    ammoPrefab: {fileID: 6230471599629424913, guid: c469fc2aa1de2af4f89d3cb40b66d234, type: 3}
-    ammoForcePower: 100
-  - ammoType: 2
-    ammoPrefab: {fileID: 1241373448544148094, guid: f13270a090a902a468fa6623b32101d0, type: 3}
-    ammoForcePower: 10

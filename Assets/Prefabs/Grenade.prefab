@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2989696996869107117}
   - component: {fileID: 3062617140658647140}
   - component: {fileID: 3803469129579189863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 530604785203178719}
   - component: {fileID: 8712621844959276477}
   - component: {fileID: 8977993054430423237}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6212455819935081460}
   - component: {fileID: 4791678257620064282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,6 +291,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24014e6d56753604e92cf8ffad923007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundsImpactList:
+  - ammoType: 2
+    audioClip: {fileID: 8300000, guid: 00c7a051b7b315e4287a8a2226ffe3da, type: 3}
 --- !u!1 &3928133845431751772
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +305,7 @@ GameObject:
   - component: {fileID: 1164070223152671653}
   - component: {fileID: 8823103134647880299}
   - component: {fileID: 8143748864464742199}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +391,7 @@ GameObject:
   - component: {fileID: 2476969564886446557}
   - component: {fileID: 3961848053736375327}
   - component: {fileID: 3796540993750390521}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +477,7 @@ GameObject:
   - component: {fileID: 6414474937953108567}
   - component: {fileID: 2336889619323317591}
   - component: {fileID: 5205090551791256813}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +563,7 @@ GameObject:
   - component: {fileID: 1433193566012095520}
   - component: {fileID: 8056177967303065276}
   - component: {fileID: 742913467403047177}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,9 +646,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6212455819935081460}
     m_Modifications:
+    - target: {fileID: 1636448248926476, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756283545428916, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
       propertyPath: m_Name
       value: SmallExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834016579923706, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4361801158873524, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
       propertyPath: m_LocalPosition.x

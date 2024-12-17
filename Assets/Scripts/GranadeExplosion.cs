@@ -10,7 +10,12 @@ public class GranadeExplosion : MonoBehaviour
     {
         Collider[] objectsAround = Physics.OverlapSphere(transform.position, radius);
 
-        explosionVFX.PlayExplosion();
+        Debug.Log(collision.gameObject.name);
+
+        ContactPoint contact = collision.contacts[0];
+        var positionForEffect = contact.point;
+
+        explosionVFX.PlayExplosion(positionForEffect);
 
         foreach (Collider collider in objectsAround)
         {
@@ -21,6 +26,6 @@ public class GranadeExplosion : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

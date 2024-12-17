@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1044748848347091644}
   - component: {fileID: 6411344490566713893}
   - component: {fileID: 4949742771408199436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PistolBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0
   m_MaskInteraction: 0
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
 --- !u!135 &-1044748848347091644
@@ -220,8 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d359f7e05f7849b9181c505f4b890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammunitionCollision:
-  - {fileID: 4304012809710604788, guid: 619b6028c6c05ad41ac0dbb86a313953, type: 3}
-  timeToDestroyAmmo:
-  - 0.05
+  ammunitionCollision: {fileID: 4304012809710604788, guid: 619b6028c6c05ad41ac0dbb86a313953, type: 3}
+  soundsImpactList:
+  - ammoType: 1
+    audioClip: {fileID: 8300000, guid: de2fc70183f946d41902656824f3de5f, type: 3}
+  timeToSetInactive: 1
   timeToDestroyVFX: 3
