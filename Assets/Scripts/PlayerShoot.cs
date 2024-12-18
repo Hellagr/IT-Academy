@@ -6,6 +6,7 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] Transform gunPointImitation;
     [SerializeField] Camera cam;
+    Projectile projectile;
     InputSystem_Actions action;
 
     void OnEnable()
@@ -18,17 +19,14 @@ public class PlayerShoot : MonoBehaviour
     {
         AudioManager.Instance.PlayActionAudio(BulletManager.Instance.ammoType);
 
-        var ammunition = BulletManager.Instance.GetCurrentPrefab();
+        Projectile ammunition = BulletManager.Instance.GetCurrentPrefab();
 
         ammunition.transform.position = gunPointImitation.position;
         ammunition.transform.rotation = gunPointImitation.rotation;
         Vector3 directionOfShoot = gunPointImitation.forward * BulletManager.Instance.ammoForcePower;
+        ammunition.gameObject.SetActive(true);
 
-        ammunition.SetActive(true);
-        Rigidbody rb = ammunition.GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        rb.AddForce(directionOfShoot, ForceMode.Impulse);
+        ammunition.Shoot(directionOfShoot, BulletManager.Instance.ammoForcePower);
     }
 
     void OnDisable()

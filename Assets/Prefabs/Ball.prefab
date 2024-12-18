@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3037409717683115644}
   - component: {fileID: -7598284998422107193}
   - component: {fileID: -2127219395234556261}
-  - component: {fileID: 5734107576147476504}
+  - component: {fileID: -2174079984571181630}
   m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
@@ -263,7 +263,7 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &5734107576147476504
+--- !u!114 &-2174079984571181630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7570546555469102452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256d359f7e05f7849b9181c505f4b890, type: 3}
+  m_Script: {fileID: 11500000, guid: ea629e8e7baa6444d8d5cf90a0babce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ammunitionCollision: {fileID: 8176419340099958609, guid: 12b42665cf0def741a3cc7bf48980f98, type: 3}

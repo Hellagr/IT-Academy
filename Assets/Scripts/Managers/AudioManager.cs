@@ -9,6 +9,13 @@ public struct AudioAction
     public AudioClip audioClip;
 }
 
+[Serializable]
+public struct AudioImpact
+{
+    public Ammo ammoType;
+    public AudioClip audioClip;
+}
+
 public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] List<AudioAction> soundsActionList = new List<AudioAction>();

@@ -13,6 +13,7 @@ public class AmmoType : MonoBehaviour
 {
     [SerializeField] private List<Ammo> ammoList;
     [SerializeField] TMP_Text AmmoType_text;
+    [SerializeField] Projectile projectilePrefab;
 
     void Start()
     {

@@ -10,8 +10,6 @@ public class GranadeExplosion : MonoBehaviour
     {
         Collider[] objectsAround = Physics.OverlapSphere(transform.position, radius);
 
-        Debug.Log(collision.gameObject.name);
-
         ContactPoint contact = collision.contacts[0];
         var positionForEffect = contact.point;
 

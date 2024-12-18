@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7590472833844531549}
   - component: {fileID: -1044748848347091644}
   - component: {fileID: 6411344490566713893}
-  - component: {fileID: 4949742771408199436}
+  - component: {fileID: -3415082549500768465}
   m_Layer: 6
   m_Name: PistolBullet
   m_TagString: Untagged
@@ -80,7 +80,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Time: 0.3
+  m_Time: 0.7
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -208,7 +208,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &4949742771408199436
+--- !u!114 &-3415082549500768465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6230471599629424913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256d359f7e05f7849b9181c505f4b890, type: 3}
+  m_Script: {fileID: 11500000, guid: db8e9720af051d247b40b8fdbb6115ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ammunitionCollision: {fileID: 4304012809710604788, guid: 619b6028c6c05ad41ac0dbb86a313953, type: 3}
@@ -225,4 +225,5 @@ MonoBehaviour:
   - ammoType: 1
     audioClip: {fileID: 8300000, guid: de2fc70183f946d41902656824f3de5f, type: 3}
   timeToSetInactive: 1
-  timeToDestroyVFX: 3
+  timeToDestroyVFX: 5
+  inactiveAtTheCollisionTime: 0.05

@@ -832,15 +832,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoDatas:
   - ammoType: 0
-    ammoPrefab: {fileID: 7570546555469102452, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
-    ammoForcePower: 3
+    projectilePrefab: {fileID: -2174079984571181630, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
+    ammoForcePower: 1.5
     ammoPool: []
   - ammoType: 1
-    ammoPrefab: {fileID: 6230471599629424913, guid: c469fc2aa1de2af4f89d3cb40b66d234, type: 3}
-    ammoForcePower: 200
+    projectilePrefab: {fileID: -3415082549500768465, guid: c469fc2aa1de2af4f89d3cb40b66d234, type: 3}
+    ammoForcePower: 10
     ammoPool: []
   - ammoType: 2
-    ammoPrefab: {fileID: 1241373448544148094, guid: f13270a090a902a468fa6623b32101d0, type: 3}
+    projectilePrefab: {fileID: 0}
     ammoForcePower: 40
     ammoPool: []
 --- !u!4 &276903822
@@ -1760,6 +1760,10 @@ PrefabInstance:
       propertyPath: AmmoType_text
       value: 
       objectReference: {fileID: 1777900145}
+    - target: {fileID: 1919934825906544355, guid: 7cd4f18b497fe604e837b582b3bcf955, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: -3415082549500768465, guid: c469fc2aa1de2af4f89d3cb40b66d234, type: 3}
     - target: {fileID: 1919934825906544355, guid: 7cd4f18b497fe604e837b582b3bcf955, type: 3}
       propertyPath: ammoList.Array.size
       value: 1
@@ -3135,7 +3139,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5734107576147476504, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
+    - {fileID: 0}
     - {fileID: -2127219395234556261, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: -7598284998422107193, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: 3037409717683115644, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
@@ -3310,7 +3314,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5734107576147476504, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
+    - {fileID: 0}
     - {fileID: -2127219395234556261, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: -7598284998422107193, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: 3037409717683115644, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
@@ -3476,6 +3480,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1919934825906544355, guid: 7cd4f18b497fe604e837b582b3bcf955, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919934825906544355, guid: 7cd4f18b497fe604e837b582b3bcf955, type: 3}
       propertyPath: playerShoot
       value: 
       objectReference: {fileID: 359138313}
@@ -3483,6 +3491,10 @@ PrefabInstance:
       propertyPath: AmmoType_text
       value: 
       objectReference: {fileID: 1777900145}
+    - target: {fileID: 1919934825906544355, guid: 7cd4f18b497fe604e837b582b3bcf955, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: -2174079984571181630, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - target: {fileID: 1919934825906544355, guid: 7cd4f18b497fe604e837b582b3bcf955, type: 3}
       propertyPath: ammoList.Array.size
       value: 1
@@ -3841,7 +3853,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5734107576147476504, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
+    - {fileID: 0}
     - {fileID: -2127219395234556261, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: -7598284998422107193, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: 3037409717683115644, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
@@ -4554,7 +4566,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5734107576147476504, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
+    - {fileID: 0}
     - {fileID: -2127219395234556261, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: -7598284998422107193, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: 3037409717683115644, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
@@ -6273,7 +6285,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5734107576147476504, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
+    - {fileID: 0}
     - {fileID: -2127219395234556261, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: -7598284998422107193, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
     - {fileID: 3037409717683115644, guid: 462f70ca0f377444ba49076ef84971b6, type: 3}
