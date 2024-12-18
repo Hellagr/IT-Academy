@@ -64,4 +64,9 @@ public abstract class Projectile : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void OnDisable()
+    {
+        CancelInvoke("SetInActive");
+    }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1940540072257769435}
   - component: {fileID: 2989696996869107117}
   - component: {fileID: 3062617140658647140}
-  - component: {fileID: 3803469129579189863}
+  - component: {fileID: -5761430467320377440}
   m_Layer: 6
   m_Name: Grenade
   m_TagString: Untagged
@@ -145,7 +145,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &3803469129579189863
+--- !u!114 &-5761430467320377440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,12 +154,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1241373448544148094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6ffb174e5b1c67489db1d4b1fcd35f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dd0f2450fdcc9348aced73c0fad6f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionVFX: {fileID: 4791678257620064282}
+  ammunitionCollision: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  soundsImpactList:
+  - ammoType: 2
+    audioClip: {fileID: 8300000, guid: 00c7a051b7b315e4287a8a2226ffe3da, type: 3}
+  timeToSetInactive: 2
+  timeToDestroyVFX: 5
   radius: 7
-  explosionForce: 700
+  explosionForce: 500
 --- !u!1 &3466718293524072448
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +260,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6212455819935081460}
-  - component: {fileID: 4791678257620064282}
   m_Layer: 6
   m_Name: Explosion
   m_TagString: Untagged
@@ -279,21 +283,6 @@ Transform:
   - {fileID: 1929739189157867289}
   m_Father: {fileID: 807778196569148448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4791678257620064282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3591814367552619137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24014e6d56753604e92cf8ffad923007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundsImpactList:
-  - ammoType: 2
-    audioClip: {fileID: 8300000, guid: 00c7a051b7b315e4287a8a2226ffe3da, type: 3}
 --- !u!1 &3928133845431751772
 GameObject:
   m_ObjectHideFlags: 0
